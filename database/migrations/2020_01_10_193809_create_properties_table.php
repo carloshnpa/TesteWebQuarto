@@ -26,6 +26,7 @@ class CreatePropertiesTable extends Migration
             $table->string('complement', 24)->nullable();
             $table->string('city', 40);
             $table->enum('state', ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RR','RO','RJ','RN','RS','SC','SP','SE','TO']);
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
