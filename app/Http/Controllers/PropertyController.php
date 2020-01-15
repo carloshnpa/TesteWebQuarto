@@ -50,7 +50,7 @@ class PropertyController extends Controller
                 $rent = Property::create($request->all());
                 return response($rent->jsonSerialize(), Response::HTTP_CREATED);
             }catch(Exception $e){
-                return response(json_encode($e->getMessage()), Response::HTTP_INTERNAL_SERVER_ERROR);
+                return response(json_encode($e->getMessage(), JSON_UNESCAPED_UNICODE), Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         }
     }
@@ -63,7 +63,11 @@ class PropertyController extends Controller
      */
     public function show(Property $property)
     {
-        return response($property->jsonSerialize(), Response::HTTP_OK);
+        if($property){
+            return response($property->jsonSerialize(), Response::HTTP_OK);
+        }else{
+            return response(json_encode(array("error" => "Imóvel não encontrado"), JSON_UNESCAPED_UNICODE), Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
@@ -93,10 +97,8 @@ class PropertyController extends Controller
         if($return){
             return response(json_encode($return), Response::HTTP_CREATED);
         }else{
-            return response(json_encode(array("error" => array("message" => "Não foi possível atualizar o imóvel"))), Response::HTTP_BAD_REQUEST);
+            return response(json_encode(array("error" => "Não foi possível atualizar o imóvel"), JSON_UNESCAPED_UNICODE), Response::HTTP_BAD_REQUEST);
         }
-
-
     }
 
     /**
@@ -112,10 +114,10 @@ class PropertyController extends Controller
             if($result){
                 return response($result, Response::HTTP_OK);
             }else{
-                return response(json_encode(array("error" => array("message" => "Não foi possível excluir propriedade."))), Response::HTTP_BAD_REQUEST);
+                return response(json_encode(array("error" => "Não foi possível excluir propriedade."), JSON_UNESCAPED_UNICODE), Response::HTTP_BAD_REQUEST);
             }
         }else{
-            return response(array("error" => array("message" => "Você deve ser o usuário dono da propriedade para excluí-la.")), Response::HTTP_FORBIDDEN);
+            return response(json_encode(array("error" => "Você deve ser o usuário dono da propriedade para excluí-la."), JSON_UNESCAPED_UNICODE), Response::HTTP_FORBIDDEN);
         }
 
 

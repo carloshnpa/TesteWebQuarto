@@ -41,7 +41,7 @@ class PropertyStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'user_id'              => 'user.id not found',
+            'user_id.required'     => 'user.id not found',
             'title.required'       => 'É preciso um título para seu anúncio.',
             'title.max'            => 'Título do anúncio não deve exceder 191 caractéres.',
             'photo.required'       => 'Uma foto é a melhor maneira de seus anúncios serem vistos, não deixe de enviar.',
