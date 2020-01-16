@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+
 // use Illuminate\Routing\Route;
 
 /*
@@ -18,10 +19,19 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::resource('/property', 'PropertyController', [
-    'except' => ['create', 'edit']
-]);
 
-Route::resource('/user', 'UserController', [
-    'except' => ['index']
-]);
+// Route::resource('/property', 'PropertyController', [
+//     'except' => ['create', 'edit']
+// ]);
+// Route::get('property/destaques', 'PropertyController@destaques');
+
+// Route::resource('/user', 'UserController', [
+//     'except' => ['index', 'login', 'logout', 'create', 'store', 'edit']
+// ]);
+// Route::prefix('auth')->group(function(){
+//     Route::get('init', 'UserController@init');
+//     Route::post('login', 'UserController@login');
+//     Route::post('logout', 'UserController@logout');
+//     Route::post('register', 'UserController@create');
+// });
+

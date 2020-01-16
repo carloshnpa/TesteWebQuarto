@@ -13,11 +13,35 @@ use Exception;
 class UserController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         //
     }
 
+    public function init(){
+        return response()->json(['user' => Auth::user()], Response::HTTP_OK);
+    }
+
+    public function login(Request $request)
+    {
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)){
+            return response()->json(Auth::user(), Response::HTTP_OK);
+        }else{
+            return response()->json(['error' => 'Falha na autenticação'], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+    }
+
     public function show(User $user){
+
+        if(!Auth::user()){
+            return response()->json(array('error' => 'Usuário deve estar logado'), Response::HTTP_FORBIDDEN);
+        }
+
         if($user){
             return response($user->jsonSerialize(), Response::HTTP_OK);
         }else{
@@ -33,7 +57,11 @@ class UserController extends Controller
             return response(json_encode($valid->errors(), JSON_UNESCAPED_UNICODE), Response::HTTP_CONFLICT);
         }else{
             try{
-                $user = User::create($request->all());
+                $user = new User();
+                $user->email = $request->email;
+                $user->password = bcrypt($request->password);
+                $user->save();
+                Auth::login($user);
                 return response($user->jsonSerialize(), Response::HTTP_CREATED);
             }catch(Exception $e){
                 return response(json_encode($e->getMessage(), JSON_UNESCAPED_UNICODE), Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -43,12 +71,14 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $return = $user->update(
-            $request->all()
-        );
+        if(Auth::user()->id == $user->id){
+            $return = $user->update(
+                $request->all()
+            );
+        }
 
-        if($return){
-            return response(json_encode($return), Response::HTTP_CREATED);
+        if(isset($return)){
+            return response(json_encode($return), Response::HTTP_OK);
         }else{
             return response(json_encode(array("error" => "Não foi possível atualizar o usuário"), JSON_UNESCAPED_UNICODE), Response::HTTP_BAD_REQUEST);
         }

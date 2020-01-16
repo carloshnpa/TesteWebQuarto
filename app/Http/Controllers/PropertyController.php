@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PropertyController extends Controller
@@ -119,7 +120,10 @@ class PropertyController extends Controller
         }else{
             return response(json_encode(array("error" => "Você deve ser o usuário dono da propriedade para excluí-la."), JSON_UNESCAPED_UNICODE), Response::HTTP_FORBIDDEN);
         }
+    }
 
-
+    public function destaques(){
+        $destaques = DB::table('properties')->select()->limit(3)->get();
+        return response()->json(['destaques' => $destaques], Response::HTTP_OK);
     }
 }

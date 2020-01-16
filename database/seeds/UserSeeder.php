@@ -17,12 +17,12 @@ class UserSeeder extends Seeder
             [
                 "name" => 'Carlos Henrique Pereira Abreu',
                 "email" => 'carloshpa.mg4@me.com',
-                "password" => Hash::make('1234'),
+                "password" => bcrypt('1234'),
             ],
             [
                 "name" => 'Dyego Nery',
                 "email" => 'dyego@3nw.com.br',
-                "password" => Hash::make('1234')
+                "password" => bcrypt('1234')
             ]
         );
 

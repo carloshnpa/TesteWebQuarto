@@ -1,9 +1,20 @@
 require('./bootstrap');
-import Welcome from './components/Welcome.vue';
+
+import App from './components/App.vue';
+import VueRouter from 'vue-router';
+import routes from './routes/routes';
+
 window.Vue = require('vue');
 
-Vue.component('Welcome', Welcome);
+Vue.component('spinner', require('vue-simple-spinner'));
+Vue.use(VueRouter);
 
-const app = new Vue({
-    el: '#app'
+const router = new VueRouter({
+    routes
 });
+const app = new Vue({
+    router,
+    el: '#app',
+    components: { App },
+    template: "<App />"
+})
