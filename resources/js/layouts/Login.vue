@@ -43,7 +43,6 @@ export default {
     },
     methods: {
         onSubmit(){
-            // console.log(this.app);
             this.errors = [];
             if(!this.email){
                 this.errors.push('Por favor, informe um nome.');

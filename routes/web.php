@@ -21,13 +21,8 @@ Route::resource('/property', 'PropertyController', [
 ]);
 Route::get('destaques', 'PropertyController@destaques');
 
-Route::resource('/user', 'UserController', [
-    'except' => ['index', 'login', 'logout', 'create', 'store', 'edit']
-]);
-Route::prefix('auth')->group(function(){
-    Route::get('init', 'UserController@init');
-    Route::post('login', 'UserController@login');
-    Route::post('logout', 'UserController@logout');
-    Route::post('register', 'UserController@create');
-});
+Route::get('auth/init', 'UserController@init');
+Route::post('auth/login', 'UserController@login');
+Route::post('auth/logout', 'UserController@logout');
+Route::post('auth/register', 'UserController@store');
 

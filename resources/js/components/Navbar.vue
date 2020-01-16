@@ -18,7 +18,7 @@
                   </div>
                   <div v-if="!app.user">
                     <router-link to="/login" class="btn">Login</router-link>
-                    <router-link to="/login" class="btn">Registrar</router-link>
+                    <router-link to="/register" class="btn">Registrar</router-link>
                   </div>
                   <div v-else>
                     <li class="nav-item dropdown mr-3">

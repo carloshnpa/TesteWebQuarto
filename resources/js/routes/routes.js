@@ -1,5 +1,6 @@
 import Home from '../layouts/Home.vue';
 import Login from '../layouts/Login.vue';
+import Register from '../layouts/Register.vue';
 
 export default [{
     path: '/',
@@ -9,4 +10,8 @@ export default [{
     path: '/login',
     component: Login,
     name: 'login'
+}, {
+    path: '/register',
+    component: Register,
+    name: 'register'
 }]

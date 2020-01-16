@@ -44,8 +44,8 @@
                 .get('/destaques')
                 .then(response => {
                     this.destaques = response.data.destaques;
-                }).catch(erro => {
-                    console.log(erro)
+                }).catch(error => {
+                    console.log(error)
                 })
             }
         },

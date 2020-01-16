@@ -60,11 +60,12 @@ class UserController extends Controller
                 $user = new User();
                 $user->email = $request->email;
                 $user->password = bcrypt($request->password);
+                $user->name = $request->name;
                 $user->save();
                 Auth::login($user);
                 return response($user->jsonSerialize(), Response::HTTP_CREATED);
             }catch(Exception $e){
-                return response(json_encode($e->getMessage(), JSON_UNESCAPED_UNICODE), Response::HTTP_INTERNAL_SERVER_ERROR);
+                return response(json_encode($e->getMessage(), JSON_UNESCAPED_UNICODE), Response::HTTP_CONFLICT);
             }
         }
     }
@@ -84,18 +85,5 @@ class UserController extends Controller
         }
     }
 
-    // public function destroy(User $user)
-    // {
-    //     if($user->id == Auth::id()){
-    //         $result = $user->delete();
-    //         if($result){
-    //             return response($result, Response::HTTP_OK);
-    //         }else{
-    //             return response(json_encode(array("error" => "Não foi possível excluir usuário."), JSON_UNESCAPED_UNICODE), Response::HTTP_BAD_REQUEST);
-    //         }
-    //     }else{
-    //         return response(json_encode(array("error" => "Você deve ser o usuário para se"), JSON_UNESCAPED_UNICODE), Response::HTTP_FORBIDDEN);
-    //     }
-    // }
 
 }
