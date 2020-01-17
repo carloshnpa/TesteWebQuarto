@@ -16,7 +16,7 @@
                         <h3>
                             {{ this.imovel.description }}
                         </h3>
-                        <h5>Adressdwnkdlandkabjscasnc,mas cmnd ,am</h5>
+                        <h5>{{ this.imovel.street }}, {{ this.imovel.city }} - {{ this.imovel.state }}</h5>
                         <hr />
                         <h4>R$ {{ this.imovel.value }}</h4>
                     </div>

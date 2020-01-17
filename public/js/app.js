@@ -25040,7 +25040,15 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("h5", [_vm._v("Adressdwnkdlandkabjscasnc,mas cmnd ,am")]),
+            _c("h5", [
+              _vm._v(
+                _vm._s(this.imovel.street) +
+                  ", " +
+                  _vm._s(this.imovel.city) +
+                  " - " +
+                  _vm._s(this.imovel.state)
+              )
+            ]),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
