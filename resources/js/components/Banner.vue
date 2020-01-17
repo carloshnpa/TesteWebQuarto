@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="container-fluid">
-            oiiiiii
             <div class="img-bg">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-12 d-flex justify-content-center align-items-center flex-wrap">

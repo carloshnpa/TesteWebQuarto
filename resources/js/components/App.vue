@@ -1,7 +1,6 @@
 <template>
-    <div>
+    <div class="app">
         <navbar :app="this"></navbar>
-        <spinner v-if="loading"></spinner>
         <router-view :app="this"></router-view>
     </div>
 </template>
@@ -24,9 +23,7 @@ export default {
     },
     methods: {
         init(){
-
             this.loading = true;
-
             axios.get('/auth/init').then(response => {
                 this.user = response.data.user;
                 this.loading = false;
@@ -39,3 +36,8 @@ export default {
     }
 };
 </script>
+<style scoped>
+    .app {
+        height: 100%;
+    }
+</style>

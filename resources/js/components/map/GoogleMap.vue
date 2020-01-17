@@ -26,7 +26,6 @@
 <script>
 import GoogleMapLoader from "./GoogleMapLoader";
 import GoogleMapMarker from "./GoogleMapMarker";
-import GoogleMapLine from "./GoogleMapLine";
 
 import { mapSettings } from "../../constants/mapSettings";
 
@@ -34,32 +33,14 @@ export default {
     components: {
         GoogleMapLoader,
         GoogleMapMarker,
-        GoogleMapLine
     },
 
     data() {
         return {
             markers: [
-                { id: "a", position: { lat: 3, lng: 101 } },
-                { id: "b", position: { lat: 5, lng: 99 } },
-                { id: "c", position: { lat: 6, lng: 97 } }
+                { id: "a", position: { lat: -19.8090553, lng: -43.1787911 } },
+
             ],
-            lines: [
-                {
-                    id: "1",
-                    path: [
-                        { lat: 3, lng: 101 },
-                        { lat: 5, lng: 99 }
-                    ]
-                },
-                {
-                    id: "2",
-                    path: [
-                        { lat: 5, lng: 99 },
-                        { lat: 6, lng: 97 }
-                    ]
-                }
-            ]
         };
     },
 
@@ -72,7 +53,7 @@ export default {
         },
 
         mapCenter() {
-            return this.markers[1].position;
+            return this.markers[0].position;
         }
     },
 };
@@ -87,5 +68,6 @@ export default {
     }
     .map{
         position: relative;
+        height: 400px;
     }
 </style>

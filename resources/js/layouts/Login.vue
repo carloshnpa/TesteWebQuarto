@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container-fluid d-flex justify-content-center align-items-center h-100">
         <div class="card">
             <div class="card-header">
                 Login
@@ -21,11 +21,15 @@
                         <label for="">Senha</label>
                         <input id="" class="form-control" type="password" name="" v-model="password">
                     </div>
-                    <button class="btn">
-                        Entrar
-                    </button>
+                    <div class="d-flex- justify-content-end">
+                        <button class="btn">
+                            Entrar
+                        </button>
+                    </div>
                 </form>
             </div>
+        </div>
+        <div class="img-bg">
         </div>
     </div>
 </template>
@@ -72,14 +76,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .container{
-        height: 100%;
-        display: flex;
-        flex: 1;
-        justify-content: center;
-        align-items: center;
+    .container-fluid
+    {
+        font-family: 'Varela Round', sans-serif;
+        background:  url('https://www.webquarto.com.br/images/bg_pesquisa_png.png') no-repeat;
+        background-position: bottom;
+        background-size: contain;
+        position: relative;
+        &::before{
+            background-color: rgba(247,247, 247);
+            content: '';
+            display: block;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+        }
         .card{
-            width: 40%;
+            top: -60px;
+            width: 30%;
+            .card-header{
+                background: #55748f;
+                text-align: center;
+                color: white;
+                padding: 20px 0;
+                font-size: 16px;
+            }
+            form{
+                .form-group{
+                    margin: 18px 0;
+                }
+            }
+            button{
+                font-family: 'Hind', sans-serif;
+                background-color: #55748f;
+                color: white;
+                margin: 10px 0;
+            }
+
         }
     }
 </style>

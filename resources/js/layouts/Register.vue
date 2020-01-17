@@ -1,40 +1,38 @@
 <template>
-    <div>
-        <div class="container d-flex align-items-center justify-content-center mt-5">
-            <div class="card">
-                <div class="card-header">
-                    Registrar
+    <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                Registrar
+            </div>
+            <div class="card-body">
+                <div v-if="this.errors.length" class="alert alert-danger">
+                    <ul class="mb-0">
+                        <li v-for="(error, index) in this.errors" :key="index" class="list-item">
+                            {{ error }}
+                        </li>
+                    </ul>
                 </div>
-                <div class="card-body">
-                    <div v-if="this.errors.length" class="alert alert-danger">
-                        <ul class="mb-0">
-                            <li v-for="(error, index) in this.errors" :key="index" class="list-item">
-                                {{ error }}
-                            </li>
-                        </ul>
+                <form v-on:submit.prevent="onSubmit">
+                    <div class="form-group">
+                        <label for="">Nome</label>
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" v-model="name">
                     </div>
-                    <form v-on:submit.prevent="onSubmit">
-                        <div class="form-group">
-                            <label for="">Nome</label>
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" v-model="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Email</label>
-                            <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" v-model="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Senha</label>
-                            <input id="" class="form-control" type="password" name="" v-model="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Repetir Seha</label>
-                            <input id="" class="form-control" type="password" name="" v-model="c_password">
-                        </div>
-                        <button class="btn">
-                            Criar Conta
-                        </button>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" v-model="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Senha</label>
+                        <input id="" class="form-control" type="password" name="" v-model="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Repetir Senha</label>
+                        <input id="" class="form-control" type="password" name="" v-model="c_password">
+                    </div>
+                    <button class="btn">
+                        Criar Conta
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -94,5 +92,44 @@
 </script>
 
 <style lang="scss" scoped>
+    .container-fluid
+    {
+        font-family: 'Varela Round', sans-serif;
+        background:  url('https://www.webquarto.com.br/images/bg_pesquisa_png.png') no-repeat;
+        background-position: bottom;
+        background-size: contain;
+        position: relative;
+        &::before{
+            background-color: rgba(247,247, 247);
+            content: '';
+            display: block;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+        }
+        .card{
+            top: -60px;
+            width: 30%;
+            .card-header{
+                background: #55748f;
+                text-align: center;
+                color: white;
+                padding: 20px 0;
+                font-size: 16px;
+            }
+            form{
+                .form-group{
+                    margin: 18px 0;
+                }
+            }
+            button{
+                font-family: 'Hind', sans-serif;
+                background-color: #55748f;
+                color: white;
+                margin: 10px 0;
+            }
 
+        }
+    }
 </style>

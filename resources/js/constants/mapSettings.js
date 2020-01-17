@@ -28,23 +28,7 @@ const POINT_MARKER_ICON_CONFIG = {
     scale: 1
 };
 
-const LINE_SYMBOL_CONFIG = {
-    path: "M 0,-2 0,2",
-    strokeOpacity: 1,
-    strokeWeight: 2,
-    scale: 1
-};
 
-const LINE_PATH_CONFIG = {
-    clickable: false,
-    geodesic: false,
-    strokeOpacity: 0,
-    strokeColor: COLORS.LINE,
-    icons: [{
-        icon: LINE_SYMBOL_CONFIG,
-        repeat: "10px"
-    }]
-};
 
 const mapSettings = {
     clickableIcons: false,
@@ -56,9 +40,9 @@ const mapSettings = {
     zoomControlOptions: {
         style: "SMALL"
     },
-    zoom: 5,
-    minZoom: 2,
-    maxZoom: 8,
+    zoom: 17,
+    minZoom: 10,
+    maxZoom: 20,
     styles: [{
             featureType: "landscape",
             stylers: [
@@ -140,4 +124,4 @@ const mapSettings = {
     ]
 };
 
-export { mapSettings, LINE_PATH_CONFIG, POINT_MARKER_ICON_CONFIG };
+export { mapSettings, POINT_MARKER_ICON_CONFIG };

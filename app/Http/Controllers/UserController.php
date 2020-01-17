@@ -54,7 +54,7 @@ class UserController extends Controller
         $validator = new UserStoreRequest();
         $valid = Validator::make($request->all(), $validator->rules(), $validator->messages());
         if($valid->fails()){
-            return response(json_encode($valid->errors(), JSON_UNESCAPED_UNICODE), Response::HTTP_CONFLICT);
+            return response(['error' => $valid->errors()], Response::HTTP_CONFLICT);
         }else{
             try{
                 $user = new User();
@@ -65,23 +65,31 @@ class UserController extends Controller
                 Auth::login($user);
                 return response($user->jsonSerialize(), Response::HTTP_CREATED);
             }catch(Exception $e){
-                return response(json_encode($e->getMessage(), JSON_UNESCAPED_UNICODE), Response::HTTP_CONFLICT);
+                return response(['error' => $e->getMessage()], Response::HTTP_CONFLICT);
             }
         }
     }
 
     public function update(Request $request, User $user)
     {
-        if(Auth::user()->id == $user->id){
+        if(Auth::user() == $user){
             $return = $user->update(
-                $request->all()
+                array([
+                    'email' => $request->email,
+                    'name' => $request->name,
+                    'password' => bcrypt($request->password)
+                ])
             );
+
+            $user->save();
+        }else{
+            return response()->json(['error' => 'Você deve ser o usuário para editar'], Response::HTTP_FORBIDDEN);
         }
 
         if(isset($return)){
-            return response(json_encode($return), Response::HTTP_OK);
+            return response()->json($user->jsonSerialize(), Response::HTTP_OK);
         }else{
-            return response(json_encode(array("error" => "Não foi possível atualizar o usuário"), JSON_UNESCAPED_UNICODE), Response::HTTP_BAD_REQUEST);
+            return response(["error" => "Não foi possível atualizar o usuário"], Response::HTTP_BAD_REQUEST);
         }
     }
 

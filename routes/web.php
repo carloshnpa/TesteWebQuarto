@@ -15,11 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::resource('/property', 'PropertyController', [
-    'except' => ['create', 'edit']
+    'except' => ['create', 'edit',]
 ]);
 Route::get('destaques', 'PropertyController@destaques');
+Route::post('property/user', 'PropertyController@propertyByUser');
+
+Route::put('user/edit/{user}', 'UserController@update');
 
 Route::get('auth/init', 'UserController@init');
 Route::post('auth/login', 'UserController@login');

@@ -51,5 +51,17 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .container-fluid{
+        background: #55748f;
+        padding: 3rem 1rem;
+        .row:nth-of-type(1){
+            color: white;
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            h1{
+                font-family: 'Hind', sans-serif;
+            }
+        }
+    }
 </style>

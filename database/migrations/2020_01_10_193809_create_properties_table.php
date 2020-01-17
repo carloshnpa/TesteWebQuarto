@@ -21,7 +21,7 @@ class CreatePropertiesTable extends Migration
             $table->text('description');
             $table->float('value');
             $table->string('street', 60);
-            $table->string('number', 6);
+            $table->string('number');
             $table->string('postal_code', 8);
             $table->string('complement', 24)->nullable();
             $table->string('city', 40);

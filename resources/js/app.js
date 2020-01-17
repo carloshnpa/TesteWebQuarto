@@ -5,8 +5,6 @@ import VueRouter from 'vue-router';
 import routes from './routes/routes';
 
 window.Vue = require('vue');
-
-Vue.component('spinner', require('vue-simple-spinner'));
 Vue.use(VueRouter);
 
 const router = new VueRouter({

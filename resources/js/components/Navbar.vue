@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-      <nav class="navbar navbar-expand-md fixed-top">
+      <nav class="navbar navbar-expand-md">
           <router-link to="/" class="navbar-brand">
             <img src="https://www.webquarto.com.br/images/logo_medio.png" alt="" srcset="">
           </router-link>
@@ -8,20 +7,16 @@
               aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavId">
-              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                  <div v-if="app.user" class="welcome-nav">
+          <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavId">
+                <div v-if="app.user" class="welcome-nav">
                     Bem vind@ {{ app.user.name }}
-                  </div>
-                  <div v-if="!app.user">
+                    </div>
+                    <div v-if="!app.user">
                     <router-link to="/login" class="btn">Login</router-link>
                     <router-link to="/register" class="btn">Registrar</router-link>
-                  </div>
-                  <div v-else>
-                    <li class="nav-item dropdown mr-3">
+                </div>
+                <div v-else>
+                    <li class="nav-item dropdown">
                         <a class="btn dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
                         Conta
                         </a>
@@ -31,11 +26,9 @@
                             <a @click="logout" class="dropdown-item">Logout</a>
                         </div>
                     </li>
-                  </div>
-              </form>
+                </div>
           </div>
       </nav>
-  </div>
 </template>
 
 <script>
@@ -74,17 +67,34 @@ export default {
         }
         .welcome-nav{
             margin-right: 10px;
+
         }
 
         li.nav-item{
             list-style-type: none;
         }
         .btn{
-            color: rgb(49, 58, 70) !important;
+            color: rgb(49, 58, 70);
             font-size: 14px !important;
+            font-family: 'Hind', sans-serif;
+            &:nth-of-type(1){
+                background-color: rgb(217, 217, 217);
+                color: black;
+                margin: 10px 0;
+            }
+            &:nth-of-type(2){
+                background-color: #55748f;
+                color: white;
+                margin: 10px 0;
+            }
         }
         span.navbar-toggler-icon{
             color: rgb(49, 58, 70);
+        }
+
+        .dropdown-item{
+            font-family: 'Hind';
+            font-size: 14px;
         }
 
     }
